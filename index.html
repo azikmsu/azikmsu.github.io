@@ -1,50 +1,75 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>LAAS-83</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
+            <script type="text/javascript" nonce="g+FFFrmZ9pfuobJwrs4NuA==">
+        ymaps.ready(init);
 
-<html>
 
-<head>
-	<meta charset='utf-8'>
-	<title>Title</title>
-	<script>
-		function geoFindMe() {
-			const status = document.querySelector('#status');
-			const mapLink = document.querySelector('#map-link');
+        function init() {
+            var CreateMap = function (mapId) {
+                map = new ymaps.Map(mapId, {
+                    center: [40.406635, 56.129057],
+                    zoom: 10
+                }, {
+                    searchControlProvider: 'yandex#search'
+                });
+                map.behaviors.disable('scrollZoom');
+                return map;
+            };
+            var AddToMap = function (map, geoObject) {
+                map.geoObjects.add(geoObject);
+                var bounds = (typeof geoObject.getBounds === "function" ? geoObject.getBounds() : geoObject.geometry.getBounds());
+                map.setBounds(bounds).then(function (result) {
+                    if (map.getZoom() > 17) {
+                        map.setZoom(17).then();
+                    }
+                });
+            };
 
-			mapLink.href = '';
-			mapLink.textContent = '';
+            
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+            function success(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                console.log(latitude + " " + longitude);
+                AddToMap(CreateMap("mapCircle"), new ymaps.Circle([
+                    [longitude, latitude],
+                    150.0
+                ], null,  {
+    // Цвет заливки.
+    // Последний байт (77) определяет прозрачность.
+    // Прозрачность заливки также можно задать используя опцию "fillOpacity".
+    fillColor: "#DB709377",
+    // Цвет обводки.
+    strokeColor: "#990066",
+    // Прозрачность обводки.
+    strokeOpacity: 0.8,
+    // Ширина обводки в пикселях.
+    strokeWidth: 3
+} ));
+            }
+            function error(err) {
+                console.warn(`ERROR(${err.code}): ${err.message}`);
+            };
+        
 
-			function success(position) {
-				const latitude = position.coords.latitude;
-				const longitude = position.coords.longitude;
-
-				status.textContent = '';
-				mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-				mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-			}
-
-			function error(err) {
-				console.warn(`ERROR(${err.code}): ${err.message}`);
-			};
-
-			if (!navigator.geolocation) {
-				status.textContent = 'Geolocation is not supported by your browser';
-			} else {
-				status.textContent = 'Locating…';
-				navigator.geolocation.getCurrentPosition(success, error);
-			}
-
-		}
-
-		window.onload = function () {
-			document.querySelector('#find-me').addEventListener('click', geoFindMe);
-		};
-	</script>
-</head>
-
-<body>
-	<button id="find-me">Show my location</button><br />
-	<p id="status"></p>
-	<a id="map-link" target="_blank"></a>
-</body>
-
-</html>
+            
+        }
+            </script>
+            <style>
+                html, body, .map {
+                    width: 100%; height: 100%; padding: 0; margin: 0;
+                }
+            </style>
+        </head>
+        <body>
+        
+        <div id="mapCircle" class="map"></div>
+        <pre></pre>
+        </body>
+        </html>
