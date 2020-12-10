@@ -9,9 +9,9 @@
 
 
         function init() {
-            var CreateMap = function (mapId) {
+            var CreateMap = function (mapId, latitude, longitude) {
                 map = new ymaps.Map(mapId, {
-                    center: [40.406635, 56.129057],
+                    center: [latitude, longitude],
                     zoom: 10
                 }, {
                     searchControlProvider: 'yandex#search'
@@ -37,7 +37,7 @@
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
-                AddToMap(CreateMap("mapCircle"), new ymaps.Circle([
+                AddToMap(CreateMap("mapCircle", latitude, longitude), new ymaps.Circle([
                     [longitude, latitude],
                     150.0
                 ], null,  {
