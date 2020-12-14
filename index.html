@@ -1,17 +1,18 @@
+
         <!DOCTYPE html>
         <html>
         <head>
             <title>LAAS-83</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
-            <script type="text/javascript" nonce="fNoyUZNBYUtBO+FkaMz3qQ==">
+            <script type="text/javascript" nonce="g+FFFrmZ9pfuobJwrs4NuA==">
         ymaps.ready(init);
 
 
         function init() {
-            var CreateMap = function (mapId, longitude, latitude) {
+            var CreateMap = function (mapId, latitude, longitude) {
                 map = new ymaps.Map(mapId, {
-                    center: [longitude, latitude],
+                    center: [latitude, longitude],
                     zoom: 10
                 }, {
                     searchControlProvider: 'yandex#search'
@@ -37,10 +38,10 @@
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
-                AddToMap(CreateMap("mapCircle", longitude, latitude), new ymaps.Circle([
+                AddToMap(CreateMap("mapCircle", latitude, longitude), new ymaps.Circle([
                     [longitude, latitude],
                     150.0
-                ], null,   {
+                ], null,  {
     // Цвет заливки.
     // Последний байт (77) определяет прозрачность.
     // Прозрачность заливки также можно задать используя опцию "fillOpacity".
@@ -55,7 +56,10 @@
             }
             function error(err) {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
-            };            
+            };
+        
+
+            
         }
             </script>
             <style>
@@ -66,7 +70,7 @@
         </head>
         <body>
         
-        <div id="geolocationAPI" class="map"></div>
+        <div id="mapCircle" class="map"></div>
         <pre></pre>
         </body>
         </html>
