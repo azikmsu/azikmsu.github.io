@@ -39,7 +39,7 @@
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
                 AddToMap(CreateMap("mapCircle", longitude, latitude), new ymaps.Circle([
-                    [longitude, latitude],
+                    [latitude, longitude],
                     150.0
                 ], null,   {
     // Цвет заливки.
