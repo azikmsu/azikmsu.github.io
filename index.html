@@ -38,7 +38,7 @@
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
-                AddToMap(CreateMap("mapCircle", longitude, latitude), new ymaps.Circle([
+                AddToMap(CreateMap("mapCircle", latitude, longitude), new ymaps.Circle([
                     [latitude, longitude],
                     150.0
                 ], null,   {
