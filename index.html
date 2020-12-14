@@ -38,8 +38,8 @@
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
-                AddToMap(CreateMap("mapCircle", latitude, longitude), new ymaps.Circle([
-                    [latitude, longitude],
+                AddToMap(CreateMap("mapCircle", longitude, latitude), new ymaps.Circle([
+                    [longitude, latitude],
                     150.0
                 ], null,   {
     // Цвет заливки.
@@ -82,7 +82,7 @@
         </head>
         <body>
         
-        <div id="geolocationAPI" class="map"></div>
+        <div id="mapCircle" class="map"></div>
         <pre></pre>
         </body>
         </html>
