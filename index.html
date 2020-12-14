@@ -1,11 +1,10 @@
-
         <!DOCTYPE html>
         <html>
         <head>
             <title>LAAS-83</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
-            <script type="text/javascript" nonce="g+FFFrmZ9pfuobJwrs4NuA==">
+            <script type="text/javascript" nonce="s1xKm2G1eboML9+gNIzarQ==">
         ymaps.ready(init);
 
 
@@ -39,9 +38,9 @@
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
                 AddToMap(CreateMap("mapCircle", latitude, longitude), new ymaps.Circle([
-                    [longitude, latitude],
+                    [latitude, longitude],
                     150.0
-                ], null,  {
+                ], null,   {
     // Цвет заливки.
     // Последний байт (77) определяет прозрачность.
     // Прозрачность заливки также можно задать используя опцию "fillOpacity".
@@ -57,7 +56,19 @@
             function error(err) {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
             };
+
+            function httpGetAsync(theUrl)
+            {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() {
+                }
+                xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+                xmlHttp.send(null);
+            };
+
         
+
+            
 
             
         }
@@ -70,7 +81,7 @@
         </head>
         <body>
         
-        <div id="mapCircle" class="map"></div>
+        <div id="geolocationAPI" class="map"></div>
         <pre></pre>
         </body>
         </html>
