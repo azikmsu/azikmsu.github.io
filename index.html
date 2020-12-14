@@ -1,17 +1,17 @@
-        <!DOCTYPE html>
+       <!DOCTYPE html>
         <html>
         <head>
             <title>LAAS-83</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
-            <script type="text/javascript" nonce="g+FFFrmZ9pfuobJwrs4NuA==">
+            <script type="text/javascript" nonce="x87TXXlLlytAzjB7vHf7/g==">
         ymaps.ready(init);
 
 
         function init() {
-            var CreateMap = function (mapId, latitude, longitude) {
+            var CreateMap = function (mapId, longitude, latitude) {
                 map = new ymaps.Map(mapId, {
-                    center: [latitude, longitude],
+                    center: [longitude, latitude],
                     zoom: 10
                 }, {
                     searchControlProvider: 'yandex#search'
@@ -30,33 +30,6 @@
             };
 
             
-            if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(success, error);
-            }
-            function success(position) {
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                console.log(latitude + " " + longitude);
-                AddToMap(CreateMap("mapCircle", latitude, longitude), new ymaps.Circle([
-                    [longitude, latitude],
-                    150.0
-                ], null,  {
-    // Цвет заливки.
-    // Последний байт (77) определяет прозрачность.
-    // Прозрачность заливки также можно задать используя опцию "fillOpacity".
-    fillColor: "#DB709377",
-    // Цвет обводки.
-    strokeColor: "#990066",
-    // Прозрачность обводки.
-    strokeOpacity: 0.8,
-    // Ширина обводки в пикселях.
-    strokeWidth: 3
-} ));
-            }
-            function error(err) {
-                console.warn(`ERROR(${err.code}): ${err.message}`);
-            };
-        
 
             
         }
@@ -69,7 +42,7 @@
         </head>
         <body>
         
-        <div id="mapCircle" class="map"></div>
+        <div id="geolocationAPI" class="map"></div>
         <pre></pre>
         </body>
         </html>
