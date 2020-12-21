@@ -4,10 +4,9 @@
             <title>LAAS-83</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
-            <script type="text/javascript" nonce="WHZIi2+InXbIJyQC12keww==">
+            <script type="text/javascript" nonce="PLD2UDVVMGhYgkE5abUFUw==">
         ymaps.ready(init);
- 
- 
+
         function init() {
             var CreateMap = function (mapId, longitude, latitude) {
                 console.log("lat = ", latitude, "lon = ", longitude);
@@ -29,7 +28,7 @@
                     }
                 });
             };
- 
+
             
             if(navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(success, error);
@@ -38,7 +37,7 @@
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
-                httpGetAsync(`http://dodo2.search.yandex.net:8033/?show=logging&lat=${latitude}&lon=${longitude}`);
+                httpGetAsync(`http://dodo2.search.yandex.net:8036/?show=logging&lat=${latitude}&lon=${longitude}&reqid=1608572458-1663533650`);
                 AddToMap(CreateMap("mapCircle", longitude, latitude), new ymaps.Circle([
                     [longitude, latitude],
                     150.0
@@ -58,21 +57,21 @@
             function error(err) {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
             };
- 
+
             function httpGetAsync(theUrl)
             {
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function() {
                     console.log("Send Zapros");
                 }
-                xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+                xmlHttp.open("GET", theUrl, true);
                 xmlHttp.send(null);
             };
- 
+
         
- 
+
             
- 
+
             
         }
             </script>
