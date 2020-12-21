@@ -4,10 +4,10 @@
             <title>LAAS-83</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
-            <script type="text/javascript" nonce="l1G1uDm7GYW2+aDIho1Pxw==">
+            <script type="text/javascript" nonce="eEK3eOxLMxlIKycqnKCXww==">
         ymaps.ready(init);
-
-
+ 
+ 
         function init() {
             var CreateMap = function (mapId, longitude, latitude) {
                 console.log("lat = ", latitude, "lon = ", longitude);
@@ -29,7 +29,7 @@
                     }
                 });
             };
-
+ 
             
             if(navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(success, error);
@@ -57,7 +57,7 @@
             function error(err) {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
             };
-
+ 
             function httpGetAsync(theUrl)
             {
                 var xmlHttp = new XMLHttpRequest();
@@ -66,11 +66,11 @@
                 xmlHttp.open("GET", theUrl, true); // true for asynchronous 
                 xmlHttp.send(null);
             };
-
+ 
         
-
+ 
             
-
+ 
             
         }
             </script>
@@ -82,7 +82,7 @@
         </head>
         <body>
         
-        <div id="mapCircle" class="map"></div>
+        <div id="geolocationAPI" class="map"></div>
         <pre></pre>
         </body>
         </html>
