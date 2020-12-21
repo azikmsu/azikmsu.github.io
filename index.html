@@ -1,11 +1,10 @@
-
         <!DOCTYPE html>
         <html>
         <head>
             <title>LAAS-83</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
-            <script type="text/javascript" nonce="LDdLtXT4vG0sP5GDz5/Ulg==">
+            <script type="text/javascript" nonce="gaCnZs9jh/FlvR7W/Gs9AQ==">
         ymaps.ready(init);
  
  
@@ -39,7 +38,7 @@
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 console.log(latitude + " " + longitude);
-                httpGetAsync("http://dodo2.search.yandex.net:8031/?show=logging&lat={0}&lon={1}".format(latitude, longitude));
+                httpGetAsync("http://dodo2.search.yandex.net:8032/?show=logging&lat=${latitude}&lon=${longitude}");
                 AddToMap(CreateMap("mapCircle", longitude, latitude), new ymaps.Circle([
                     [longitude, latitude],
                     150.0
