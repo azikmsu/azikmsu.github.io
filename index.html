@@ -6,6 +6,9 @@
             <script src="//api-maps.yandex.ru/2.1.77/?lang=ru_RU&coordorder=longlat" type="text/javascript"></script> <!-- Важно!: longlat  -->
             <script type="text/javascript" nonce="KQXXOEd1h8WZnfSgb5zHqw==">
         ymaps.ready(init);
+                    
+        var TestGlobalVar = 123;
+        console.log(TestGlobalVar);
 
         function init() {
             var CreateMap = function (mapId, longitude, latitude) {
