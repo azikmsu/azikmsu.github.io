@@ -7,8 +7,18 @@
             <script type="text/javascript" nonce="KQXXOEd1h8WZnfSgb5zHqw==">
         ymaps.ready(init);
                     
-        var TestGlobalVar = 123;
+        var TestGlobalVar = 228;
         console.log(TestGlobalVar);
+                    
+        window.addEventListener("message", function(event) {
+          /*if (event.origin != 'http://javascript.info') {
+            return;
+          }*/
+
+          console.log( "received: " + event.data );
+
+          // can message back using event.source.postMessage(...)
+        });
 
         function init() {
             var CreateMap = function (mapId, longitude, latitude) {
