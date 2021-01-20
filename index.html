@@ -7,12 +7,14 @@
             <script type="text/javascript" nonce="KQXXOEd1h8WZnfSgb5zHqw==">
         ymaps.ready(init);
                     
-        var TestGlobalVar = 330;
+        var TestGlobalVar = 340;
         console.log(TestGlobalVar);
                     
         window.addEventListener("message", function(event) {
-            console.log( "received VIEWER: " + event.data, event.origin);
-            //event.source.postMessage("GetBack", "viewer");
+            if (event.origin == "https://iframe-toloka.com") {
+                console.log( "received VIEWER: " + event.data, event.origin);
+                event.source.postMessage("GetBack", "https://iframe-toloka.com");
+            }
         });
 
         function init() {
