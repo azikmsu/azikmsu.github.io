@@ -7,7 +7,7 @@
             <script type="text/javascript" nonce="KQXXOEd1h8WZnfSgb5zHqw==">
         ymaps.ready(init);
                     
-        var TestGlobalVar = 228;
+        var TestGlobalVar = 300;
         console.log(TestGlobalVar);
                     
         window.addEventListener("message", function(event) {
@@ -15,9 +15,9 @@
             return;
           }*/
 
-          console.log( "received: " + event.data );
+          console.log( "received VIEWER: " + event.data );
 
-          // can message back using event.source.postMessage(...)
+          event.source.postMessage("GetBack", "*");
         });
 
         function init() {
